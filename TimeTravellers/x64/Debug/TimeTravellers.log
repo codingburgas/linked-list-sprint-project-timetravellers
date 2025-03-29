@@ -1,0 +1,7 @@
+﻿  menu.cpp
+C:\Users\zsvla\source\repos\linked-list-sprint-project-timetravellers\menu.cpp(24,5): warning C4065: switch statement contains 'default' but no 'case' labels
+  TimeTravellers.cpp
+  Generating Code...
+  TimeTravellers.vcxproj -> C:\Users\zsvla\source\repos\linked-list-sprint-project-timetravellers\x64\Debug\TimeTravellers.exe
+  'pwsh.exe' is not recognized as an internal or external command,
+  operable program or batch file.
