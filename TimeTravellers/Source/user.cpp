@@ -1,7 +1,6 @@
-#include "user.h"
-#include "menu.h"
+#include "../Header/menu.h"
+#include "../Header/user.h"
 
-using namespace std;
 
 User* createUser(const string& username, const string& passwordHash, const string& salt) {
     User* newUser = new User;

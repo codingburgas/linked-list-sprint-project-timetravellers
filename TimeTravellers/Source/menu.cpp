@@ -1,8 +1,5 @@
-#include "menu.h"
-#include "user.h"
-#include <iostream>
-
-using namespace std;
+#include "../Header/menu.h"
+#include "../Header/user.h"
 
 void mainMenu() {
     User* head = nullptr;
