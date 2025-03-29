@@ -1,7 +1,9 @@
-﻿  menu.cpp
-C:\Users\zsvla\source\repos\linked-list-sprint-project-timetravellers\menu.cpp(24,5): warning C4065: switch statement contains 'default' but no 'case' labels
-  TimeTravellers.cpp
+﻿  TimeTravellers.cpp
+  menu.cpp
+  user.cpp
   Generating Code...
-  TimeTravellers.vcxproj -> C:\Users\zsvla\source\repos\linked-list-sprint-project-timetravellers\x64\Debug\TimeTravellers.exe
+C:\Users\zsvla\Documents\linked-list-sprint-project-timetravellers\user.cpp(120,1): warning C4715: 'loginUser': not all control paths return a value
+  LINK : C:\Users\zsvla\Documents\linked-list-sprint-project-timetravellers\x64\Debug\TimeTravellers.exe not found or not built by the last incremental link; performing full link
+  TimeTravellers.vcxproj -> C:\Users\zsvla\Documents\linked-list-sprint-project-timetravellers\x64\Debug\TimeTravellers.exe
   'pwsh.exe' is not recognized as an internal or external command,
   operable program or batch file.

@@ -129,9 +129,11 @@
   <ItemGroup>
     <ClCompile Include="menu.cpp" />
     <ClCompile Include="TimeTravellers.cpp" />
+    <ClCompile Include="user.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="menu.h" />
+    <ClInclude Include="user.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

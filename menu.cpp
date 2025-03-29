@@ -1,9 +1,13 @@
 #include "menu.h"
+#include "user.h"
 #include <iostream>
 
 using namespace std;
 
 void mainMenu() {
+    User* head = nullptr;
+    loadUsers(head);
+
     int choice;
 
     cout << "==============================" << endl;
@@ -16,10 +20,22 @@ void mainMenu() {
     cout << "Enter your choice: ";
     cin >> choice;
 
-    switch (choice)
-    {
-    //case 1: login();
-    //case 2: register();
-    default: exit(0);
+    if (choice == 1) {
+        if (loginUser(head)) {
+            cout << "Login successful!" << endl;
+        }
+        else {
+            cout << "Invalid username or password." << endl;
+        }
+    }
+    else if (choice == 2) {
+        registerUser(head);
+    }
+    else if (choice == 3) {
+        exit(0);
+    }
+    else {
+        system("cls");
+        mainMenu();
     }
 }
