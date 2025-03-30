@@ -1,7 +1,6 @@
 #include "../Header/menu.h"
 #include "../Header/user.h"
 
-
 User* createUser(const string& username, const string& passwordHash, const string& salt) {
     User* newUser = new User;
     newUser->username = username;
@@ -85,10 +84,9 @@ void registerUser(User*& head) {
         temp->next = newUser;
     }
 
-    ofstream outFile("data/users.txt", ios::app);
+    ofstream outFile("TimeTravellers/Data/users.txt", ios::app);
     outFile << username << " " << salt << " " << hashedPassword << endl;
     outFile.close();
-
     system("cls");
     mainMenu();
 }
@@ -113,13 +111,16 @@ bool loginUser(User* head) {
         if (hashedPassword == storedPasswordHash) {
             return true;
         }
+        else {
+            return false;
+        }
 
         temp = temp->next;
     }
 }
 
 void loadUsers(User*& head) {
-    ifstream inFile("data/users.txt");
+    ifstream inFile("TimeTravellers/Data/users.txt");
     string username, salt, passwordHash;
 
     while (inFile >> username >> salt >> passwordHash) {

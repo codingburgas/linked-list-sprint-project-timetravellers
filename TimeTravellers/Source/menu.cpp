@@ -1,15 +1,20 @@
 #include "../Header/menu.h"
 #include "../Header/user.h"
-#include"../Header/optionsMenu.h"
+#include "../Header/addEvents.h"
+#include <iostream>
+#include <string>
+#include <limits>
 using namespace std;
+
 void mainMenu() {
-    User* head = nullptr;
-    loadUsers(head);
+    User* userHead = nullptr;
+    HistoricalEvent* eventHead = nullptr;
+    loadUsers(userHead);
 
     int choice;
 
     cout << "==============================" << endl;
-    cout << "      HISTORY APP MENU       " << endl;
+    cout << "           WELCOME       " << endl;
     cout << "==============================" << endl;
     cout << "1. Login" << endl;
     cout << "2. Register" << endl;
@@ -19,18 +24,20 @@ void mainMenu() {
     cin >> choice;
 
     if (choice == 1) {
-        if (loginUser(head)) {
-           
-
+        if (loginUser(userHead)) {
             system("cls");
-            optionsMenu();
+            loadEventsFromFile(eventHead);
+            optionsMenu(eventHead);
         }
         else {
             cout << "Invalid username or password." << endl;
+            system("cls");
+            mainMenu();
         }
     }
     else if (choice == 2) {
-        registerUser(head);
+        registerUser(userHead);
+        
     }
     else if (choice == 3) {
         exit(0);
@@ -39,44 +46,4 @@ void mainMenu() {
         system("cls");
         mainMenu();
     }
-}
-
-void optionsMenu()
-{
-    int choice;
-
-    while (true) {
-        cout << endl;
-       cout << "============ MENU ============"<<endl;
-        cout << "1. View Historical events" << endl;
-        cout << "2. Add Historical event" << endl;
-        cout << "3. Search Historical event" << endl;
-        cout << "4. Delete Historical event" << endl;
-       cout << "5. Exit" << endl;
-       cout << "Enter your choice: " << endl;
-
-        cin >> choice;
-
-        switch (choice) {
-        case 1:
-            cout << "Viewing Historical events..." << endl;
-            break;
-        case 2:
-           cout << "Adding a new Historical event..." << endl;
-            break;
-        case 3:
-            cout << "Searching for a Historical event..." << endl;
-            break;
-        case 4:
-            cout << "Deleting a Historical event..." << endl;
-            break;
-        case 5:
-            cout << "Exiting program. Goodbye!" << endl;
-            system("cls");
-            
-        default:
-            cout << "Invalid choice! Please try again." << endl;
-        }
-    }
-
 }
