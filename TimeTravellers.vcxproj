@@ -127,6 +127,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="optionsMenu.h" />
     <ClInclude Include="TimeTravellers\Header\menu.h" />
     <ClInclude Include="TimeTravellers\Header\user.h" />
   </ItemGroup>

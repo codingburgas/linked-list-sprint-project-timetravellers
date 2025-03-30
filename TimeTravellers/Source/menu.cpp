@@ -1,6 +1,7 @@
 #include "../Header/menu.h"
 #include "../Header/user.h"
-
+#include"../Header/optionsMenu.h"
+using namespace std;
 void mainMenu() {
     User* head = nullptr;
     loadUsers(head);
@@ -19,7 +20,10 @@ void mainMenu() {
 
     if (choice == 1) {
         if (loginUser(head)) {
-            cout << "Login successful!" << endl;
+           
+
+            system("cls");
+            optionsMenu();
         }
         else {
             cout << "Invalid username or password." << endl;
@@ -35,4 +39,44 @@ void mainMenu() {
         system("cls");
         mainMenu();
     }
+}
+
+void optionsMenu()
+{
+    int choice;
+
+    while (true) {
+        cout << endl;
+       cout << "============ MENU ============"<<endl;
+        cout << "1. View Historical events" << endl;
+        cout << "2. Add Historical event" << endl;
+        cout << "3. Search Historical event" << endl;
+        cout << "4. Delete Historical event" << endl;
+       cout << "5. Exit" << endl;
+       cout << "Enter your choice: " << endl;
+
+        cin >> choice;
+
+        switch (choice) {
+        case 1:
+            cout << "Viewing Historical events..." << endl;
+            break;
+        case 2:
+           cout << "Adding a new Historical event..." << endl;
+            break;
+        case 3:
+            cout << "Searching for a Historical event..." << endl;
+            break;
+        case 4:
+            cout << "Deleting a Historical event..." << endl;
+            break;
+        case 5:
+            cout << "Exiting program. Goodbye!" << endl;
+            system("cls");
+            
+        default:
+            cout << "Invalid choice! Please try again." << endl;
+        }
+    }
+
 }

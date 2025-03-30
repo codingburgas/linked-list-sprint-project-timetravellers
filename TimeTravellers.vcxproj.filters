@@ -21,6 +21,9 @@
     <ClInclude Include="TimeTravellers\Header\user.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="optionsMenu.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="TimeTravellers\Source\menu.cpp">
