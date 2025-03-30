@@ -100,24 +100,28 @@ bool loginUser(User* head) {
     cout << "Enter password: ";
     password = getPassword();
 
-    User* temp = head;
+    User* temp = head; 
     while (temp != nullptr) {
-        string storedSalt = temp->salt;
-        string storedPasswordHash = temp->password;
+        if (temp->username == username) { 
+            string storedSalt = temp->salt;
+            string storedPasswordHash = temp->password;
 
-        string saltedPassword = storedSalt + password;
-        string hashedPassword = hashPassword(saltedPassword);
+            string saltedPassword = storedSalt + password;
+            string hashedPassword = hashPassword(saltedPassword);
 
-        if (hashedPassword == storedPasswordHash) {
-            return true;
+            if (hashedPassword == storedPasswordHash) {
+                cout << "Login successful!" << endl;
+                return true;
+            }
         }
-        else {
-            return false;
-        }
-
-        temp = temp->next;
+        temp = temp->next; 
     }
+
+    cout << "Login failed. Invalid username or password." << endl;
+    return false;
 }
+
+
 
 void loadUsers(User*& head) {
     ifstream inFile("TimeTravellers/Data/users.txt");
