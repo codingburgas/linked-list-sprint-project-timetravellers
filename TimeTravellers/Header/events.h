@@ -3,11 +3,12 @@
 #include <string>
 #include <fstream>
 #include <limits>
+#include <iomanip>
 
 using namespace std;
 
-
 struct HistoricalEvent {
+    int id;
     int year;
     string event;
     string description;
@@ -18,3 +19,4 @@ void addHistoricalEvent(HistoricalEvent*& head, const string& event, int year, c
 void saveEventsToFile(HistoricalEvent* head);
 void loadEventsFromFile(HistoricalEvent*& head);
 void optionsMenu(HistoricalEvent*& head);
+void displayHistoricalEvents(HistoricalEvent* head);

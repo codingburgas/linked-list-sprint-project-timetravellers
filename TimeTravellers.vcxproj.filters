@@ -21,7 +21,7 @@
     <ClInclude Include="TimeTravellers\Header\user.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="TimeTravellers\Header\addEvents.h">
+    <ClInclude Include="TimeTravellers\Header\events.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -35,7 +35,7 @@
     <ClCompile Include="TimeTravellers\Source\user.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="TimeTravellers\Source\addEvents.cpp">
+    <ClCompile Include="TimeTravellers\Source\events.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
