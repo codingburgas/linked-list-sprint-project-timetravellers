@@ -64,6 +64,23 @@ void optionsMenu(HistoricalEvent*& head) {
     {
         searchHistoricalEvent(head);
     }
+    else if (choice == 4) {
+        system("cls");
+        cout << "Enter the ID of the event to delete: ";
+        int eventID;
+
+        while (!(cin >> eventID)) {
+            cin.clear();
+            cin.ignore();
+            cout << "Invalid input! Please enter a valid event ID: ";
+        }
+
+        deleteHistoricalEvent(head, eventID);
+        cout << "Returning to menu..." << endl;
+        system("cls");
+        optionsMenu(head);
+    }
+
     else if (choice == 5)
     {
         saveEventsToFile(head);
@@ -279,4 +296,37 @@ void searchHistoricalEvent(HistoricalEvent* head) {
     cin.ignore();
     cin.get();
     system("cls");
+}
+void deleteHistoricalEvent(HistoricalEvent*& head, int eventID) {
+    if (head == nullptr) {
+        cout << "No historical events recorded yet." << endl;
+        return;
+    }
+
+    HistoricalEvent* temp = head;
+    HistoricalEvent* prev = nullptr;
+
+
+    if (temp != nullptr && temp->id == eventID) {
+        head = temp->next;
+        delete temp;
+        cout << "Event deleted successfully." << endl;
+        return;
+    }
+
+
+    while (temp != nullptr && temp->id != eventID) {
+        prev = temp;
+        temp = temp->next;
+    }
+
+
+    if (temp == nullptr) {
+        cout << "Event with ID " << eventID << " not found." << endl;
+        return;
+    }
+
+    prev->next = temp->next;
+    delete temp;
+    cout << "Event deleted successfully." << endl;
 }

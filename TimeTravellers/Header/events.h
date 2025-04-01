@@ -21,3 +21,4 @@ void loadEventsFromFile(HistoricalEvent*& head);
 void optionsMenu(HistoricalEvent*& head);
 void displayHistoricalEvents(HistoricalEvent* head);
 void searchHistoricalEvent(HistoricalEvent* head);
+void deleteHistoricalEvent(HistoricalEvent*& head, int eventID);
