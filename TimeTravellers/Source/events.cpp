@@ -60,6 +60,10 @@ void optionsMenu(HistoricalEvent*& head) {
         system("cls");
         optionsMenu(head);
     }
+    else if (choice == 3)
+    {
+        searchHistoricalEvent(head);
+    }
     else if (choice == 5)
     {
         saveEventsToFile(head);
@@ -191,4 +195,88 @@ void loadEventsFromFile(HistoricalEvent*& head) {
     }
 
     file.close();
+}
+
+void searchHistoricalEvent(HistoricalEvent* head) {
+    if (head == nullptr) {
+        cout << "There are no historical events recorded yet." << endl;
+        cout << "Press Enter to return to the menu..." << endl;
+        cin.ignore();
+        cin.get();
+        return;
+    }
+
+    system("cls");
+    cout << "=== Search for a Historical Event ===" << endl;
+
+    int choice;
+    cout << "1. Search by Name" << endl;
+    cout << "2. Search by Year" << endl;
+    cout << "Enter your choice: ";
+
+    if (!(cin >> choice)) {
+        cin.clear();
+        cin.ignore();
+        cout << "Invalid input! Please enter a number." << endl;
+        return;
+    }
+
+    cin.ignore();
+    bool found = false;
+    HistoricalEvent* current = head;
+
+    if (choice == 1) {
+        system("cls");
+        string searchName;
+        cout << "Enter the name of the event: " << endl;
+        getline(cin, searchName);
+
+        while (current) {
+            if (current->event.find(searchName) != string::npos) {
+                cout << endl << "Event Found!" << endl;
+                cout << "ID: " << current->id << endl;
+                cout << "Year: " << current->year << endl;
+                cout << "Event: " << current->event << endl;
+                cout << "Description: " << current->description << endl;
+                found = true;
+            }
+            current = current->next;
+        }
+    }
+    else if (choice == 2) {
+        system("cls");
+        int searchYear;
+        cout << "Enter the year to search (1-2025): " << endl;
+
+        while (!(cin >> searchYear) || searchYear < 1 || searchYear > 2025) {
+            cin.clear();
+            cin.ignore();
+            cout << "Invalid year! Please enter a number between 1 and 2025: " << endl;
+        }
+
+        while (current) {
+            if (current->year == searchYear) {
+                cout << endl << "Event Found!" << endl;
+                cout << "ID: " << current->id << endl;
+                cout << "Year: " << current->year << endl;
+                cout << "Event: " << current->event << endl;
+                cout << "Description: " << current->description << endl;
+                found = true;
+            }
+            current = current->next;
+        }
+    }
+    else {
+        cout << "Invalid selection. Returning to the menu..." << endl;
+        return;
+    }
+
+    if (!found) {
+        cout << endl << "No events matched your search. Please try again." << endl;
+    }
+
+    cout << endl << "Press Enter to return to the menu..." << endl;
+    cin.ignore();
+    cin.get();
+    system("cls");
 }

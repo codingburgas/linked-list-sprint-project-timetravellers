@@ -20,3 +20,4 @@ void saveEventsToFile(HistoricalEvent* head);
 void loadEventsFromFile(HistoricalEvent*& head);
 void optionsMenu(HistoricalEvent*& head);
 void displayHistoricalEvents(HistoricalEvent* head);
+void searchHistoricalEvent(HistoricalEvent* head);
