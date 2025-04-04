@@ -127,11 +127,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="TimeTravellers\Header\admin.h" />
     <ClInclude Include="TimeTravellers\Header\events.h" />
     <ClInclude Include="TimeTravellers\Header\menu.h" />
     <ClInclude Include="TimeTravellers\Header\user.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="TimeTravellers\Source\admin.cpp" />
     <ClCompile Include="TimeTravellers\Source\events.cpp" />
     <ClCompile Include="TimeTravellers\Source\menu.cpp" />
     <ClCompile Include="TimeTravellers\Source\TimeTravellers.cpp" />

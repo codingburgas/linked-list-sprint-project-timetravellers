@@ -27,7 +27,7 @@ void mainMenu() {
         User* loggedInUser = loginUser(userHead);
         if (loggedInUser != nullptr) {
             loadEventsFromFile(eventHead);
-            optionsMenu(eventHead, loggedInUser->role);
+            optionsMenu(eventHead, userHead, loggedInUser->role);
         }
     }
     else if (choice == 2) {
