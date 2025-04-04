@@ -229,6 +229,7 @@ void searchHistoricalEvent(HistoricalEvent* head) {
     int choice;
     cout << "1. Search by Name" << endl;
     cout << "2. Search by Year" << endl;
+    cout << "3. Go back" << endl;
     cout << "Enter your choice: ";
 
     if (!(cin >> choice)) {
@@ -255,7 +256,6 @@ void searchHistoricalEvent(HistoricalEvent* head) {
                 cout << "Year: " << current->year << endl;
                 cout << "Event: " << current->event << endl;
                 cout << "Description: " << current->description << endl;
-                found = true;
             }
             current = current->next;
         }
@@ -278,25 +278,27 @@ void searchHistoricalEvent(HistoricalEvent* head) {
                 cout << "Year: " << current->year << endl;
                 cout << "Event: " << current->event << endl;
                 cout << "Description: " << current->description << endl;
-                found = true;
             }
             current = current->next;
         }
     }
-    else {
-        cout << "Invalid selection. Returning to the menu..." << endl;
+    else if (choice == 3) {
+        system("cls");
+        optionsMenu(head);
         return;
     }
-
-    if (!found) {
-        cout << endl << "No events matched your search. Please try again." << endl;
+    else {
+        cout << "Invalid selection. Returning to the menu..." << endl;
+        searchHistoricalEvent(head);
+        return;
     }
 
     cout << endl << "Press Enter to return to the menu..." << endl;
     cin.ignore();
     cin.get();
-    system("cls");
+    searchHistoricalEvent(head);
 }
+
 void deleteHistoricalEvent(HistoricalEvent*& head, int eventID) {
     if (head == nullptr) {
         cout << "No historical events recorded yet." << endl;
