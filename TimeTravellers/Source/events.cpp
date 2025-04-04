@@ -1,19 +1,32 @@
 ﻿#include "../Header/events.h"
 
-void optionsMenu(HistoricalEvent*& head) {
+void optionsMenu(HistoricalEvent*& head, string role) {
     int choice;
 
     system("cls");
-    cout << "==============================" << endl;
-    cout << "      HISTORY APP MENU       " << endl;
-    cout << "==============================" << endl;
-    cout << "1. View Historical Events" << endl;
-    cout << "2. Add a Historical Event" << endl;
-    cout << "3. Search for an Event" << endl;
-    cout << "4. Delete an Event" << endl;
-    cout << "5. Exit" << endl;
-    cout << "==============================" << endl;
-    cout << "Select an option: ";
+
+    if (role == "admin")
+    {
+        cout << "==============================" << endl;
+        cout << "      HISTORY APP MENU       " << endl;
+        cout << "==============================" << endl;
+        cout << "1. View Historical Events" << endl;
+        cout << "2. Search for an Event" << endl;
+        cout << "3. Administration Panel" << endl;
+        cout << "4. Exit" << endl;
+        cout << "==============================" << endl;
+        cout << "Select an option: ";
+    }
+    else {
+        cout << "==============================" << endl;
+        cout << "      HISTORY APP MENU       " << endl;
+        cout << "==============================" << endl;
+        cout << "1. View Historical Events" << endl;
+        cout << "2. Search for an Event" << endl;
+        cout << "3. Exit" << endl;
+        cout << "==============================" << endl;
+        cout << "Select an option: ";
+    }
 
     if (!(cin >> choice)) {
         cin.clear();
@@ -25,66 +38,34 @@ void optionsMenu(HistoricalEvent*& head) {
     {
         system("cls");
         cout << "Historical Events:" << endl;
-        displayHistoricalEvents(head);
+        displayHistoricalEvents(head, role);
     } 
-    else if (choice == 2) 
+    else if (choice == 2)
     {
-        system("cls");
-        cout << "Adding a new Historical Event..." << endl;
-
-        string event, description;
-        int year;
-
-        cin.ignore();
-        cout << "Event Name: ";
-        getline(cin, event);
-
-        while (true) {
-            cout << "Year (1-2025): ";
-            if (cin >> year && year >= 1 && year <= 2025) {
-                break;
-            }
-            else {
-                cin.clear();
-                cin.ignore();
-                cout << "Invalid year! Please enter a number between 1 and 2025." << endl;
-            }
+        searchHistoricalEvent(head, role);
+    }
+    else if (choice == 3) {
+        if (role == "admin") {
+            system("cls");
+            cout << "Admin Panel ";
         }
-
-        cin.ignore();
-        cout << "Description: ";
-        getline(cin, description);
-
-        addHistoricalEvent(head, event, year, description);
-        cout << "Event added successfully!" << endl;
-        system("cls");
-        optionsMenu(head);
+        else {
+            saveEventsToFile(head);
+            cout << "Saving data... Exiting program. Goodbye!" << endl;
+        }
+        
     }
-    else if (choice == 3)
+    else if (choice == 4)
     {
-        searchHistoricalEvent(head);
-    }
-    else if (choice == 4) {
-        system("cls");
-        cout << "Enter the ID of the event to delete: ";
-        int eventID;
-
-        while (!(cin >> eventID)) {
-            cin.clear();
+        if (role == "admin") {
+            saveEventsToFile(head);
+            cout << "Saving data... Exiting program. Goodbye!" << endl;
+        }
+        else {
+            cout << "That's not a valid option. Try again." << endl;
             cin.ignore();
-            cout << "Invalid input! Please enter a valid event ID: ";
+            system("cls");
         }
-
-        deleteHistoricalEvent(head, eventID);
-        cout << "Returning to menu..." << endl;
-        system("cls");
-        optionsMenu(head);
-    }
-
-    else if (choice == 5)
-    {
-        saveEventsToFile(head);
-        cout << "Saving data... Exiting program. Goodbye!" << endl;
     } 
     else 
     {
@@ -94,13 +75,13 @@ void optionsMenu(HistoricalEvent*& head) {
     }
 }
 
-void displayHistoricalEvents(HistoricalEvent* head) {
+void displayHistoricalEvents(HistoricalEvent* head, string role) {
     if (!head) {
         cout << endl << "No historical events found." << endl;
         cout << "Press Enter to return to the menu...";
         cin.ignore();
         cin.get();
-        optionsMenu(head);
+        optionsMenu(head, role);
     }
 
     int maxIDWidth = 3;
@@ -131,7 +112,7 @@ void displayHistoricalEvents(HistoricalEvent* head) {
     cout << endl << "Press Enter to return to the menu...";
     cin.ignore();
     cin.get();
-    optionsMenu(head);
+    optionsMenu(head, role);
 }
 
 void addHistoricalEvent(HistoricalEvent*& head, const string& event, int year, const string& description) {
@@ -214,7 +195,7 @@ void loadEventsFromFile(HistoricalEvent*& head) {
     file.close();
 }
 
-void searchHistoricalEvent(HistoricalEvent* head) {
+void searchHistoricalEvent(HistoricalEvent* head, string role) {
     if (head == nullptr) {
         cout << "There are no historical events recorded yet." << endl;
         cout << "Press Enter to return to the menu..." << endl;
@@ -284,19 +265,19 @@ void searchHistoricalEvent(HistoricalEvent* head) {
     }
     else if (choice == 3) {
         system("cls");
-        optionsMenu(head);
+        optionsMenu(head, role);
         return;
     }
     else {
         cout << "Invalid selection. Returning to the menu..." << endl;
-        searchHistoricalEvent(head);
+        searchHistoricalEvent(head, role);
         return;
     }
 
     cout << endl << "Press Enter to return to the menu..." << endl;
     cin.ignore();
     cin.get();
-    searchHistoricalEvent(head);
+    searchHistoricalEvent(head, role);
 }
 
 void deleteHistoricalEvent(HistoricalEvent*& head, int eventID) {

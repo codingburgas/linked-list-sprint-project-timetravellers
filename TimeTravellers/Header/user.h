@@ -11,15 +11,17 @@
 using namespace std;
 
 struct User {
+    int id;
     string username;
     string password;
     string salt;
+    string role;
     User* next;
 };
 
-User* createUser(const string& username, const string& password, const string& salt);
+User* createUser(int id, const string& username, const string& password, const string& salt, const string& role);
 void registerUser(User*& head);
-bool loginUser(User* head);
+User* loginUser(User* head);
 void loadUsers(User*& head);
 
 string hashPassword(const string& password);

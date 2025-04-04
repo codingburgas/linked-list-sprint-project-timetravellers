@@ -24,15 +24,10 @@ void mainMenu() {
     cin >> choice;
 
     if (choice == 1) {
-        if (loginUser(userHead)) {
-            system("cls");
+        User* loggedInUser = loginUser(userHead);
+        if (loggedInUser != nullptr) {
             loadEventsFromFile(eventHead);
-            optionsMenu(eventHead);
-        }
-        else {
-            cout << "Invalid username or password." << endl;
-            system("cls");
-            mainMenu();
+            optionsMenu(eventHead, loggedInUser->role);
         }
     }
     else if (choice == 2) {

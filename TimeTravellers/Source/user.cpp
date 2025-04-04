@@ -1,11 +1,13 @@
 #include "../Header/menu.h"
 #include "../Header/user.h"
 
-User* createUser(const string& username, const string& passwordHash, const string& salt) {
+User* createUser(int id, const string& username, const string& passwordHash, const string& salt, const string& role) {
     User* newUser = new User;
+    newUser->id = id;
     newUser->username = username;
     newUser->password = passwordHash;
     newUser->salt = salt;
+    newUser->role = role;
     newUser->next = nullptr;
     return newUser;
 }
@@ -71,13 +73,23 @@ void registerUser(User*& head) {
     string saltedPassword = salt + password;
     string hashedPassword = hashPassword(saltedPassword);
 
-    User* newUser = createUser(username, hashedPassword, salt);
+    string role = "user";
+
+    int newId = 1;
+    User* temp = head;
+    while (temp != nullptr) {
+        if (temp->id >= newId)
+            newId = temp->id + 1;
+        temp = temp->next;
+    }
+
+    User* newUser = createUser(newId, username, hashedPassword, salt, role);
 
     if (head == nullptr) {
         head = newUser;
     }
     else {
-        User* temp = head;
+        temp = head;
         while (temp->next != nullptr) {
             temp = temp->next;
         }
@@ -85,13 +97,14 @@ void registerUser(User*& head) {
     }
 
     ofstream outFile("TimeTravellers/Data/users.txt", ios::app);
-    outFile << username << " " << salt << " " << hashedPassword << endl;
+    outFile << newId << " " << username << " " << salt << " " << hashedPassword << " " << role << endl;
     outFile.close();
+
     system("cls");
     mainMenu();
 }
 
-bool loginUser(User* head) {
+User* loginUser(User* head) {
     string username, password;
 
     cout << "Enter username: ";
@@ -100,9 +113,9 @@ bool loginUser(User* head) {
     cout << "Enter password: ";
     password = getPassword();
 
-    User* temp = head; 
+    User* temp = head;
     while (temp != nullptr) {
-        if (temp->username == username) { 
+        if (temp->username == username) {
             string storedSalt = temp->salt;
             string storedPasswordHash = temp->password;
 
@@ -111,24 +124,23 @@ bool loginUser(User* head) {
 
             if (hashedPassword == storedPasswordHash) {
                 cout << "Login successful!" << endl;
-                return true;
+                return temp;
             }
         }
-        temp = temp->next; 
+        temp = temp->next;
     }
 
     cout << "Login failed. Invalid username or password." << endl;
-    return false;
+    return nullptr;
 }
-
-
 
 void loadUsers(User*& head) {
     ifstream inFile("TimeTravellers/Data/users.txt");
-    string username, salt, passwordHash;
+    int id;
+    string username, salt, passwordHash, role;
 
-    while (inFile >> username >> salt >> passwordHash) {
-        User* newUser = createUser(username, passwordHash, salt);
+    while (inFile >> id >> username >> salt >> passwordHash >> role) {
+        User* newUser = createUser(id, username, passwordHash, salt, role);
 
         if (head == nullptr) {
             head = newUser;
