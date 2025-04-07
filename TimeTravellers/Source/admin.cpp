@@ -12,7 +12,9 @@ void adminPanel(User*& head, HistoricalEvent*& eventHead, string role) {
         cout << "2. Promote a user to admin" << endl;
         cout << "3. Demote an admin to user" << endl;
         cout << "4. Delete a user" << endl;
-        cout << "5. Exit to main menu" << endl;
+        cout << "5. Add a Historical Event" << endl;
+        cout << "6. Delete an Event" << endl;
+        cout << "7. Exit to main menu" << endl;
         cout << "==============================" << endl;
         cout << "Enter your choice: ";
 
@@ -104,7 +106,59 @@ void adminPanel(User*& head, HistoricalEvent*& eventHead, string role) {
             }
         }
 
-        else if (choice == 5) {
+        else if (choice == 5)
+        {
+            system("cls");
+            cout << "Adding a new Historical Event..." << endl;
+
+            string event, description;
+            int year;
+
+            cin.ignore();
+            cout << "Event Name: ";
+            getline(cin, event);
+
+            while (true) {
+                cout << "Year (1-2025): ";
+                if (cin >> year && year >= 1 && year <= 2025) {
+                    break;
+                }
+                else {
+                    cin.clear();
+                    cin.ignore();
+                    cout << "Invalid year! Please enter a number between 1 and 2025." << endl;
+                }
+            }
+
+            cin.ignore();
+            cout << "Description: ";
+            getline(cin, description);
+
+            addHistoricalEvent(eventHead, event, year, description);
+            cout << "Event added successfully!" << endl;
+            system("cls");
+            optionsMenu(eventHead, head, role);
+            break;
+        }
+        else if (choice == 6)
+        {
+            system("cls");
+            cout << "Enter the ID of the event to delete: ";
+            int eventID;
+
+            while (!(cin >> eventID)) {
+                cin.clear();
+                cin.ignore();
+                cout << "Invalid input! Please enter a valid event ID: ";
+            }
+
+            deleteHistoricalEvent(eventHead, eventID);
+            cout << "Returning to menu..." << endl;
+            system("cls");
+            optionsMenu(eventHead, head, role);
+            break;
+        }
+        else if (choice == 7) {
             optionsMenu(eventHead, head, role);
             break;
         }
