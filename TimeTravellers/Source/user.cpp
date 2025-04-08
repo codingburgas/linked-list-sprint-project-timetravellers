@@ -63,8 +63,14 @@ string getPassword() {
 void registerUser(User*& head) {
     string username, password;
 
-    cout << "Enter a new username: ";
+    cout << "Enter a new username (or type 'back' to return): ";
     cin >> username;
+
+    if (username == "back") {
+        system("cls");
+        mainMenu();
+        return;
+    }
 
     cout << "Enter a password: ";
     password = getPassword();
@@ -101,37 +107,46 @@ void registerUser(User*& head) {
     outFile.close();
 
     system("cls");
-    mainMenu();
+    cout << "Registration successful. Please log in." << endl;
+    loginUser(head);
 }
 
 User* loginUser(User* head) {
-    string username, password;
+    while (true) {
+        string username, password;
 
-    cout << "Enter username: ";
-    cin >> username;
+        cout << "Enter username (or type 'back' to return): ";
+        cin >> username;
 
-    cout << "Enter password: ";
-    password = getPassword();
-
-    User* temp = head;
-    while (temp != nullptr) {
-        if (temp->username == username) {
-            string storedSalt = temp->salt;
-            string storedPasswordHash = temp->password;
-
-            string saltedPassword = storedSalt + password;
-            string hashedPassword = hashPassword(saltedPassword);
-
-            if (hashedPassword == storedPasswordHash) {
-                cout << "Login successful!" << endl;
-                return temp;
-            }
+        if (username == "back") {
+            system("cls");
+            mainMenu();
+            return nullptr;
         }
-        temp = temp->next;
-    }
 
-    cout << "Login failed. Invalid username or password." << endl;
-    return nullptr;
+        cout << "Enter password: ";
+        password = getPassword();
+
+        User* temp = head;
+        while (temp != nullptr) {
+            if (temp->username == username) {
+                string storedSalt = temp->salt;
+                string storedPasswordHash = temp->password;
+
+                string saltedPassword = storedSalt + password;
+                string hashedPassword = hashPassword(saltedPassword);
+
+                if (hashedPassword == storedPasswordHash) {
+                    cout << endl << "Login successful!" << endl;
+                    return temp;
+                }
+                break;
+            }
+            temp = temp->next;
+        }
+
+        cout << endl << "Login failed. Invalid username or password. Please try again." << endl;
+    }
 }
 
 void loadUsers(User*& head) {
