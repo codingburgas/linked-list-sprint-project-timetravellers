@@ -23,3 +23,4 @@ void optionsMenu(HistoricalEvent*& head, User*& userHead,  string role);
 void displayHistoricalEvents(HistoricalEvent* head, User*& userHead, string role);
 void searchHistoricalEvent(HistoricalEvent* head, User*& userHead, string role);
 void deleteHistoricalEvent(HistoricalEvent*& head, int eventID);
+void redactHistoricalEvent(HistoricalEvent*& head, int eventID, User*& userHead, string role);

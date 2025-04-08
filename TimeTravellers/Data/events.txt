@@ -1,4 +1,5 @@
-1 | 1919 | ashldkjshahjskld | ahjksd;hajskdhaljksdhjaks
-2 | 2020 | asjhkdaljksdhljkas | asjk;d;lasdjk;lasd;jlk
-4 | 1234 | bulgari | gug
-6 | 2020 | ajsdj | lnaskdl;akj;lasdk;
+1 | 1010 | ad | adda
+2 | 1919 | mamamam | ajalkjaj
+3 | 1983 | rusnaci | gag
+4 | 2020 | ajsdj | lnaskdl;akj;lasdk;
+5 | 2020 | mazna | maznama
