@@ -29,10 +29,23 @@ void optionsMenu(HistoricalEvent*& head, User*& userHead, string role) {
         cout << "Select an option: ";
     }
 
-    if (!(cin >> choice)) {
-        cin.clear();
-        cin.ignore();
-        cout << "Invalid input! Please enter a number." << endl;
+    while (true) {
+        cout << "Enter your choice: ";
+        cin >> choice;
+
+        if (cin.fail() || choice < 1 || choice > 4 && role == "admin") {
+            cout << "Invalid input. Please enter a number between 1 and 4." << endl;
+            cin.clear();
+            cin.ignore();
+        }
+        else if (cin.fail() || choice < 1 || choice > 3) {
+            cout << "Invalid input. Please enter a number between 1 and 3." << endl;
+            cin.clear();
+            cin.ignore();
+        }
+        else {
+            break;
+        }
     }
 
     if(choice == 1) 

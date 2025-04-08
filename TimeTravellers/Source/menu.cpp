@@ -20,25 +20,40 @@ void mainMenu() {
     cout << "2. Register" << endl;
     cout << "3. Exit" << endl;
     cout << "==============================" << endl;
-    cout << "Enter your choice: ";
-    cin >> choice;
+    
+    while (true) {
+        cout << "Enter your choice: ";
+        cin >> choice;
 
-    if (choice == 1) {
-        User* loggedInUser = loginUser(userHead);
-        if (loggedInUser != nullptr) {
-            loadEventsFromFile(eventHead);
-            optionsMenu(eventHead, userHead, loggedInUser->role);
+        if (cin.fail() || choice < 1 || choice > 3) {
+            cout << "Invalid input. Please enter a number between 1 and 3." << endl;
+            cin.clear();
+            cin.ignore();
+        }
+        else {
+            break;
         }
     }
-    else if (choice == 2) {
-        registerUser(userHead);
-        
-    }
-    else if (choice == 3) {
-        exit(0);
-    }
-    else {
-        system("cls");
-        mainMenu();
+
+    if (choice >= 1 && choice <= 3)
+    {
+        if (choice == 1) {
+            User* loggedInUser = loginUser(userHead);
+            if (loggedInUser != nullptr) {
+                loadEventsFromFile(eventHead);
+                optionsMenu(eventHead, userHead, loggedInUser->role);
+            }
+        }
+        else if (choice == 2) {
+            registerUser(userHead);
+
+        }
+        else if (choice == 3) {
+            exit(0);
+        }
+        else {
+            system("cls");
+            mainMenu();
+        }
     }
 }
