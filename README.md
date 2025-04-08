@@ -27,17 +27,16 @@ This project involves creating a C++ application to register and manage historic
   <p align="left"> 
   <a href="https://visualstudio.microsoft.com/"><img src="https://img.icons8.com/fluency/48/000000/visual-studio.png" alt="Visual Studio 2019"/></a>
     <a href="https://www.microsoft.com/en-ww/microsoft-365/word"><img src="https://img.icons8.com/fluency/48/000000/microsoft-word-2019.png" alt="MS Word logo" width=48px /></a>
-    <a href="https://www.microsoft.com/en-us/microsoft-365/powerpoint"><img src="https://img.icons8.com/fluency/48/000000/microsoft-powerpoint-2019.png" alt="MS PowerPoint logo" width=48px />
+    <a href="https://www.microsoft.com/en-us/microsoft-365/powerpoint"><img src="https://img.icons8.com/fluency/48/000000/microsoft-powerpoint-2019.png" alt="MS PowerPoint logo" width=48px /></a>
     <a href="https://www.microsoft.com/en-us/microsoft-365/excel"><img src="https://img.icons8.com/fluency/48/000000/microsoft-excel-2019.png" alt="MS Excel logo"/></a>
     <a href="https://git-scm.com/"><img src="https://img.icons8.com/color/48/000000/git.png" alt="Git"/></a>
-    <img src="Website/dist/img/icons8-github-48 (1).png#gh-light-mode-only"/>
   </p> 
   
 ## 💼 Documents
-  - [Documentation]()
-  - [Presentation]()
-  - [QA Unit Testing]()
-  - [QA - Test Plan]()
+  - [Documentation](https://codingburgas-my.sharepoint.com/:w:/g/personal/zsvladkov22_codingburgas_bg/EQtGrwivhWFEgScRjGNB2ZkB3GHTeaSW87V9wskEnD9jLw?e=1h6fig)
+  - [Presentation](https://codingburgas-my.sharepoint.com/:p:/g/personal/zsvladkov22_codingburgas_bg/Ecv_osOuxbtPuSDTqlE-QCkBgMIaV5p063hgsMow-YZGxw?e=OgeNOs)
+  - [QA Unit Testing](https://codingburgas-my.sharepoint.com/:x:/g/personal/zsvladkov22_codingburgas_bg/Ea2gCKCAoghBjoTpYdIYu9sBJJ6ryeaYR38S1PFDQPtleg?e=WtyIc8)
+  - [QA - Test Plan](https://codingburgas-my.sharepoint.com/:w:/g/personal/zsvladkov22_codingburgas_bg/ESZKGAYU9IFJnURT2n-LHn8BbqMpvxHZP2ByYWPumJ7xog?e=N3v2S8)
 
 ## 🔧 Installation
 
