@@ -143,12 +143,37 @@ void saveEventsToFile(HistoricalEvent* head) {
 
     if (!file) {
         cout << "Error opening file!" << endl;
+        return;
     }
 
+    HistoricalEvent* sortedHead = nullptr;
     HistoricalEvent* temp = head;
     while (temp) {
-        file << temp->id << " | " << temp->year << " | " << temp->event << " | " << temp->description << endl;
+        addHistoricalEvent(sortedHead, temp->event, temp->year, temp->description);
         temp = temp->next;
+    }
+
+    bool swapped;
+    do {
+        swapped = false;
+        HistoricalEvent* ptr = sortedHead;
+        while (ptr && ptr->next) {
+            if (ptr->year > ptr->next->year) {
+                swap(ptr->year, ptr->next->year);
+                swap(ptr->event, ptr->next->event);
+                swap(ptr->description, ptr->next->description);
+                swapped = true;
+            }
+            ptr = ptr->next;
+        }
+    } while (swapped);
+
+    HistoricalEvent* current = sortedHead;
+    int newID = 1;
+    while (current) {
+        current->id = newID++;
+        file << current->id << " | " << current->year << " | " << current->event << " | " << current->description << endl;
+        current = current->next;
     }
 
     file.close();
@@ -313,4 +338,52 @@ void deleteHistoricalEvent(HistoricalEvent*& head, int eventID) {
     prev->next = temp->next;
     delete temp;
     cout << "Event deleted successfully." << endl;
+}
+
+void redactHistoricalEvent(HistoricalEvent*& head, int eventID, User*& userHead, string role) {
+    if (!head) {
+        cout << "No historical events recorded yet." << endl;
+        return;
+    }
+
+    HistoricalEvent* temp = head;
+    while (temp && temp->id != eventID) {
+        temp = temp->next;
+    }
+
+    if (!temp) {
+        cout << "Event with ID " << eventID << " not found." << endl;
+        return;
+    }
+
+    cout << "Editing Event ID: " << temp->id << endl;
+    cout << "Current Year: " << temp->year << endl;
+    cout << "Current Event: " << temp->event << endl;
+    cout << "Current Description: " << temp->description << endl;
+
+    cout << endl << "Enter new year (current: " << temp->year << "): ";
+    int newYear;
+    while (!(cin >> newYear)) {
+        cin.clear();
+        cin.ignore();
+        cout << "Invalid input. Enter a valid year: ";
+    }
+
+    cin.ignore();
+    cout << "Enter new event name: ";
+    string newEvent;
+    getline(cin, newEvent);
+
+    cout << "Enter new description: ";
+    string newDesc;
+    getline(cin, newDesc);
+
+    temp->year = newYear;
+    temp->event = newEvent;
+    temp->description = newDesc;
+
+    cout << endl << "Press Enter to return to the menu..." << endl;
+    cin.ignore();
+    cin.get();
+    optionsMenu(head, userHead, role);
 }

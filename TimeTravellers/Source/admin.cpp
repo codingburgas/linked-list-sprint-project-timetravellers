@@ -13,8 +13,9 @@ void adminPanel(User*& head, HistoricalEvent*& eventHead, string role) {
         cout << "3. Demote an admin to user" << endl;
         cout << "4. Delete a user" << endl;
         cout << "5. Add a Historical Event" << endl;
-        cout << "6. Delete an Event" << endl;
-        cout << "7. Exit to main menu" << endl;
+        cout << "6. Edit an Event" << endl;
+        cout << "7. Delete an Event" << endl;
+        cout << "8. Exit to main menu" << endl;
         cout << "==============================" << endl;
         cout << "Enter your choice: ";
 
@@ -143,6 +144,19 @@ void adminPanel(User*& head, HistoricalEvent*& eventHead, string role) {
         else if (choice == 6)
         {
             system("cls");
+            int eventID;
+            cout << "Enter the ID of the event you want to edit: ";
+            while (!(cin >> eventID)) {
+                cin.clear();
+                cin.ignore();
+                cout << "Invalid input. Enter a valid event ID: ";
+            }
+            redactHistoricalEvent(eventHead, eventID, head, role);
+            break;
+        }
+        else if (choice == 7)
+        {
+            system("cls");
             cout << "Enter the ID of the event to delete: ";
             int eventID;
 
@@ -158,7 +172,7 @@ void adminPanel(User*& head, HistoricalEvent*& eventHead, string role) {
             optionsMenu(eventHead, head, role);
             break;
         }
-        else if (choice == 7) {
+        else if (choice == 8) {
             optionsMenu(eventHead, head, role);
             break;
         }
