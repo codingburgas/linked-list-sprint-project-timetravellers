@@ -1,11 +1,14 @@
 #include "../Header/admin.h"
 
 using namespace std;
+
+// Main function to handle admin panel interactions
 void adminPanel(User*& head, HistoricalEvent*& eventHead, string role) {
     int choice;
     string username;
 
     while (true) {
+        // Display admin panel menu
         cout << "==============================" << endl;
         cout << "         ADMIN PANEL       " << endl;
         cout << "==============================" << endl;
@@ -20,13 +23,15 @@ void adminPanel(User*& head, HistoricalEvent*& eventHead, string role) {
         cout << "==============================" << endl;
         cout << "Enter your choice: ";
 
+        // Validate input for menu choice
         if (!(cin >> choice)) {
-            cin.clear();
-            cin.ignore();
+            cin.clear();        
+            cin.ignore();       
             cout << "Invalid input. Please enter a number." << endl;
             continue;
         }
 
+        // Option 1: Display all registered users
         if (choice == 1) {
             system("cls");
             cout << "===== Registered Users =====" << endl;
@@ -37,6 +42,7 @@ void adminPanel(User*& head, HistoricalEvent*& eventHead, string role) {
             }
         }
 
+        // Option 2: Promote user to admin
         else if (choice == 2) {
             int id;
             cout << "Enter the ID of the user to promote: ";
@@ -58,6 +64,7 @@ void adminPanel(User*& head, HistoricalEvent*& eventHead, string role) {
             }
         }
 
+        // Option 3: Demote admin to regular user
         else if (choice == 3) {
             int id;
             cout << "Enter the ID of the user to demote: ";
@@ -79,6 +86,7 @@ void adminPanel(User*& head, HistoricalEvent*& eventHead, string role) {
             }
         }
 
+        // Option 4: Delete a user
         else if (choice == 4) {
             int id;
             cout << "Enter the ID of the user to delete: ";
@@ -87,17 +95,21 @@ void adminPanel(User*& head, HistoricalEvent*& eventHead, string role) {
             User* temp = head;
             User* prev = nullptr;
 
+            // Find user by ID
             while (temp != nullptr && temp->id != id) {
                 prev = temp;
                 temp = temp->next;
             }
 
+            // Handle user not found
             if (temp == nullptr) {
                 cout << "User with ID " << id << " not found." << endl;
             }
             else {
+                // Remove user from the linked list
                 if (prev == nullptr) {
-                    head = temp->next;
+                    // Deleting head node
+                    head = temp->next;  
                 }
                 else {
                     prev->next = temp->next;
@@ -108,18 +120,20 @@ void adminPanel(User*& head, HistoricalEvent*& eventHead, string role) {
             }
         }
 
-        else if (choice == 5)
-        {
+        // Option 5: Add a historical event
+        else if (choice == 5) {
             system("cls");
             cout << "Adding a new Historical Event..." << endl;
 
             string event, description;
             int year;
-
-            cin.ignore();
+            // Clear leftover newline from previous input
+            cin.ignore();  
+           
             cout << "Event Name: ";
             getline(cin, event);
 
+            // Validate the year input
             while (true) {
                 cout << "Year (1-2025): ";
                 if (cin >> year && year >= 1 && year <= 2025) {
@@ -132,31 +146,39 @@ void adminPanel(User*& head, HistoricalEvent*& eventHead, string role) {
                 }
             }
 
-            cin.ignore();
+            cin.ignore(); 
             cout << "Description: ";
             getline(cin, description);
 
+            // Add event to linked list
             addHistoricalEvent(eventHead, event, year, description);
             cout << "Event added successfully!" << endl;
+
             system("cls");
-            optionsMenu(eventHead, head, role);
+            // Return to options
+            optionsMenu(eventHead, head, role); 
             break;
         }
-        else if (choice == 6)
-        {
+
+        // Option 6: Edit an existing event
+        else if (choice == 6) {
             system("cls");
             int eventID;
             cout << "Enter the ID of the event you want to edit: ";
+
+            // Validate ID input
             while (!(cin >> eventID)) {
                 cin.clear();
                 cin.ignore();
                 cout << "Invalid input. Enter a valid event ID: ";
             }
-            redactHistoricalEvent(eventHead, eventID, head, role);
+            // Edit function call
+            redactHistoricalEvent(eventHead, eventID, head, role); 
             break;
         }
-        else if (choice == 7)
-        {
+
+        // Option 7: Delete an event
+        else if (choice == 7) {
             system("cls");
             cout << "Enter the ID of the event to delete: ";
             int eventID;
@@ -166,36 +188,47 @@ void adminPanel(User*& head, HistoricalEvent*& eventHead, string role) {
                 cin.ignore();
                 cout << "Invalid input! Please enter a valid event ID: ";
             }
-
-            deleteHistoricalEvent(eventHead, eventID);
+            // Remove event from list
+            deleteHistoricalEvent(eventHead, eventID);  
             cout << "Returning to menu..." << endl;
+
             system("cls");
             optionsMenu(eventHead, head, role);
             break;
         }
+
+        // Option 8: Exit to main menu
         else if (choice == 8) {
             optionsMenu(eventHead, head, role);
             break;
         }
 
+        // Invalid option entered
         else {
             cout << "Invalid option. Try again." << endl;
         }
 
+        // Pause before continuing
         cout << endl << "Press Enter to continue...";
-        saveUsersToFile(head);
+        // Save any user changes
+        saveUsersToFile(head);  
         cin.ignore();
         cin.get();
         system("cls");
     }
 }
 
+// Save the current user list to a file
 void saveUsersToFile(User* head) {
     ofstream outFile("TimeTravellers/Data/users.txt");
     User* temp = head;
+
+    // Write each user's data line by line
     while (temp != nullptr) {
-        outFile << temp->id << " " << temp->username << " " << temp->salt << " " << temp->password << " " << temp->role << endl;
+        outFile << temp->id << " " << temp->username << " " << temp->salt << " "
+            << temp->password << " " << temp->role << endl;
         temp = temp->next;
     }
+
     outFile.close();
 }
