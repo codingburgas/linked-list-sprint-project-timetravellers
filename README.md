@@ -33,10 +33,10 @@ This project involves creating a C++ application to register and manage historic
   </p> 
   
 ## 💼 Documents
-  - [Documentation](https://codingburgas-my.sharepoint.com/:w:/g/personal/zsvladkov22_codingburgas_bg/EQtGrwivhWFEgScRjGNB2ZkB3GHTeaSW87V9wskEnD9jLw?e=1h6fig)
+  - [Documentation](https://codingburgas-my.sharepoint.com/:b:/g/personal/zsvladkov22_codingburgas_bg/EUAWUaY9WftFsizjWIMWXDgBFJGGKlx7JfCJL8JCuieeSQ?e=GcBNLV)
   - [Presentation](https://codingburgas-my.sharepoint.com/:p:/g/personal/zsvladkov22_codingburgas_bg/Ecv_osOuxbtPuSDTqlE-QCkBgMIaV5p063hgsMow-YZGxw?e=OgeNOs)
   - [QA Unit Testing](https://codingburgas-my.sharepoint.com/:x:/g/personal/zsvladkov22_codingburgas_bg/Ea2gCKCAoghBjoTpYdIYu9sBJJ6ryeaYR38S1PFDQPtleg?e=WtyIc8)
-  - [QA - Test Plan](https://codingburgas-my.sharepoint.com/:w:/g/personal/zsvladkov22_codingburgas_bg/ESZKGAYU9IFJnURT2n-LHn8BbqMpvxHZP2ByYWPumJ7xog?e=N3v2S8)
+  - [QA - Test Plan](https://codingburgas-my.sharepoint.com/:b:/g/personal/zsvladkov22_codingburgas_bg/EYUvV509yPJPuost3wRa3QcBOAQgycrFMiXi8NFPi4Ym7A?e=xCNqaa)
 
 ## 🔧 Installation
 
