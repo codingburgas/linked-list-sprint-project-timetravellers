@@ -1,6 +1,6 @@
 ﻿#include "../Header/events.h"
 #include "../Header/admin.h"
-
+using namespace std;
 void optionsMenu(HistoricalEvent*& head, User*& userHead, string role) {
     int choice;
 

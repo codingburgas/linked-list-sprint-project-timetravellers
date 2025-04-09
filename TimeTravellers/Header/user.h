@@ -8,21 +8,21 @@
 #include <random>
 #include <string>
 
-using namespace std;
+
 
 struct User {
     int id;
-    string username;
-    string password;
-    string salt;
-    string role;
+    std::string username;
+    std::string password;
+    std::string salt;
+    std::string role;
     User* next;
 };
 
-User* createUser(int id, const string& username, const string& password, const string& salt, const string& role);
+User* createUser(int id, const std::string& username, const std::string& password, const std::string& salt, const std::string& role);
 void registerUser(User*& head);
 User* loginUser(User* head);
 void loadUsers(User*& head);
 
-string hashPassword(const string& password);
-string generateSalt();
+std::string hashPassword(const std::string& password);
+std::string generateSalt();

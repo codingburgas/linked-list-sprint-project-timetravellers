@@ -1,6 +1,6 @@
 #include "../Header/menu.h"
 #include "../Header/user.h"
-
+using namespace std;
 User* createUser(int id, const string& username, const string& passwordHash, const string& salt, const string& role) {
     User* newUser = new User;
     newUser->id = id;

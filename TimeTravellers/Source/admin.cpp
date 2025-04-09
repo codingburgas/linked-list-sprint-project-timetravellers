@@ -1,5 +1,6 @@
 #include "../Header/admin.h"
 
+using namespace std;
 void adminPanel(User*& head, HistoricalEvent*& eventHead, string role) {
     int choice;
     string username;
